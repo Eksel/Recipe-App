@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Modal = () => {
+type HandleClose = {handleClose: () => void}
+
+const Modal = ({closeModal}: HandleClose) => {
     return (
         <div>
             
