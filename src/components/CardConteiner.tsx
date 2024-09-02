@@ -6,7 +6,7 @@ import CreateNewRecipeCard from './CreateNewRecipeCard'
 const CardConteiner = () => {
     const {recipes} = useRecipeContext()
   return (
-    <div className='flex flex-wrap  justify-center'>
+    <div className='flex flex-wrap items-center justify-center'>
       {recipes && recipes.map((value)=>{
        return (
         <CardRecipe item={value}/>

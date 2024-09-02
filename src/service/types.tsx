@@ -12,7 +12,13 @@ interface Recipe {
 
 interface RecipeContext {
     recipes: Recipe[];
-    setRecipes:  React.Dispatch<React.SetStateAction<Recipe[]>>;
+    modal: undefined | Recipe;
+    addRecipe: (recipe: Recipe) => void;
+    removeRecipe: (recipe: Recipe) => void;
+    isModalOpen: boolean;
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setModal: (context: Recipe) => void;
+    clearModal: () => void;
 }
 
 interface Children  { 
@@ -22,4 +28,18 @@ interface Children  {
 type itemRecipe = {
     item: Recipe;
 }
-export type {Recipe, RecipeContext, Children,itemRecipe};
+type ReducerAction = {
+    type: Reducer_Action_Type;
+    payload?: any;
+}
+
+type Initstate = {recipes: Recipe[], modal: undefined | Recipe}
+const enum Reducer_Action_Type{
+    ADD_RECIPE = 'ADD_RECIPE',
+    REMOVE_RECIPE = 'REMOVE_RECIPE',
+    SET_MODAL = 'SET_MODAL',
+    CLEAR_MODAL = 'CLEAR_MODAL',
+}
+
+export type {Recipe, RecipeContext, Children,itemRecipe,ReducerAction,Initstate};
+export {Reducer_Action_Type}
