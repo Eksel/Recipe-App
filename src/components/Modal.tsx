@@ -2,11 +2,15 @@ import React from 'react';
 import { Recipe } from '../service/types';
 import { useRecipeContext } from '../service/providers/RecipeContextProvider';
 
-type Props = {handleClose: () => void}
 
-const Modal = (props: Props) => {
-    const closeModal = props.handleClose;
-    const {modal} = useRecipeContext()
+
+const Modal = () => {
+    
+    const {modal,setIsModalOpen,clearModal} = useRecipeContext()
+    const closeModal = () => {
+        setIsModalOpen(false)
+        clearModal()
+      }
     
     return (
         <div className='fixed w-5/6 p-12 bg-emerald-200 rounded-3xl'>
