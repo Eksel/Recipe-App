@@ -16,14 +16,14 @@ const RecipeContextProvider = ({children} : Children) => {
     const [state, dispatch] = useReducer(recipeReducer, initState)
     const [isModalOpen, setIsModalOpen] = useState(false); 
     
-    const context = {
+    const context : RecipeContext = {
         recipes: state.recipes,
         modal: state.modal,
-        addRecipe: (recipe: Recipe) => dispatch({type: Reducer_Action_Type.ADD_RECIPE}),
-        removeRecipe: (recipe: Recipe) => dispatch({type: Reducer_Action_Type.REMOVE_RECIPE}),
+        addRecipe: (recipe) => dispatch({type: Reducer_Action_Type.ADD_RECIPE}),
+        removeRecipe: (recipe) => dispatch({type: Reducer_Action_Type.REMOVE_RECIPE}),
         isModalOpen: isModalOpen,
         setIsModalOpen: setIsModalOpen,
-        setModal: (context: Recipe) => dispatch({type: Reducer_Action_Type.SET_MODAL,payload: context}),
+        setModal: (context) => dispatch({type: Reducer_Action_Type.SET_MODAL,payload: context}),
         clearModal: () => dispatch({type: Reducer_Action_Type.CLEAR_MODAL})
     }
     

@@ -7,14 +7,14 @@ import RecipesPage from './pages/RecipesPage'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-import RecipeContextProvider from "./service/providers/RecipeContextProvider"
-
+import RecipeContextProvider, { useRecipeContext } from "./service/providers/RecipeContextProvider"
+import Modal from "./components/Modal"
 function App() {
   
 
   return (
     <RecipeContextProvider>
-      <div className='app h-screen w-full grid grid-rows-page grid-cols-1'>
+      <div className='app h-screen w-full grid grid-rows-page grid-cols-1 '>
         
         <BrowserRouter>
           <Navbar/>
@@ -25,7 +25,7 @@ function App() {
               <Route path='/my-recipes' element={<RecipesPage/>}/>
               <Route path='/contact' element={<Contact/>}></Route>
             </Routes>
-          
+            
           
           <Footer/>
         </BrowserRouter>

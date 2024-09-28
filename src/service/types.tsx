@@ -17,7 +17,7 @@ interface RecipeContext {
     removeRecipe: (recipe: Recipe) => void;
     isModalOpen: boolean;
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    setModal: (context: Recipe) => void;
+    setModal: (context: Recipe | undefined) => void;
     clearModal: () => void;
 }
 

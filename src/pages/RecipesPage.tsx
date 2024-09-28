@@ -5,7 +5,7 @@ import { MdEmojiFoodBeverage } from "react-icons/md";
 import { useRecipeContext } from "../service/providers/RecipeContextProvider";
 
 export default function RecipesPage() {
-  const {isModalOpen,setIsModalOpen,clearModal} = useRecipeContext()
+  const {isModalOpen} = useRecipeContext()
   
   return (
     <div className="flex flex-col items-center">

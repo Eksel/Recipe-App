@@ -14,6 +14,34 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar"),
+    function ({addUtilities}){
+      const newUtilities = {
+        ".scrollbar-thin" : {
+          scrollbarWidth: "thin",
+          scrollbarColor: "gray yellow",
+          
+        },
+        ".scrollbar-webkit":{
+          "&::-webkit-scrollbar" : {
+            width: "10px",
+            borderRadius: "50px",
+            marginRight: "10px"
+          },
+          "&::-webkit-scrollbar-track" : {
+            background: "#E5E5E5",
+            borderRadius: "50px"
+          },
+          "&::-webkit-scrollbar-thumb" : {
+            background: "#898989",
+            borderRadius: "20px",
+            
+          }
+        }
+      }
+      addUtilities(newUtilities, ["responsive","hover"])
+    }
+  ],
 }
 

@@ -16,7 +16,7 @@
         "50g unsalted butter"
       ],
       "instructions": "Cook the spaghetti. Meanwhile, heat a pan and cook the pancetta with the garlic. Beat the eggs and mix with the cheese. Combine everything together, add some pasta water if necessary, and season with pepper.",
-      "img": "/img/carbonara.jpg",
+      "img": "https://na-talerzu.pl/wp-content/uploads/2020/08/Carbonara-8040.jpg",
       "energyValue": "600 kcal",
       "steps": [
         "Cook the spaghetti in salted boiling water.",
@@ -45,7 +45,7 @@
         "Cooked rice or noodles"
       ],
       "instructions": "Heat oil in a large skillet or wok. Add onion and garlic, cook until softened. Add bell peppers, zucchini, and broccoli, stir fry until tender-crisp. Stir in soy sauce, hoisin sauce, and sesame oil. Serve over rice or noodles.",
-      "img": "/img/Vegetable-Stir-Fry-2.jpg",
+      "img": "https://images.themodernproper.com/billowy-turkey/production/posts/VegetableStirFry_9.jpg?w=1200&h=1200&q=60&fm=jpg&fit=crop&dm=1703377301&s=3484d660c4b404c6d23b0c3ec7ac66eb",
       "energyValue": "300 kcal",
       "steps": [
         "Heat vegetable oil in a large skillet or wok over medium-high heat.",
@@ -73,92 +73,8 @@
         "1 cup chopped walnuts (optional)"
       ],
       "instructions": "Preheat oven to 350°F (175°C). Cream together the butter and sugars. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water and add to the batter with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans. Bake for about 10 minutes, or until edges are nicely browned.",
-      "img": "/img/chocolate-chip-cookies-44-1200x1703.jpg",
-      "energyValue": "200 kcal per cookie",
-      "steps": [
-        "Preheat oven to 350°F (175°C).",
-        "Cream together the butter and both sugars until smooth.",
-        "Beat in the eggs one at a time, then stir in the vanilla extract.",
-        "Dissolve baking soda in hot water and add to the batter along with the salt.",
-        "Stir in flour, chocolate chips, and chopped walnuts (if using).",
-        "Drop by large spoonfuls onto ungreased baking pans.",
-        "Bake for about 10 minutes, or until the edges are nicely browned."
-      ],
-      "isFavorite": false
-    },{
-      "id":1,
-      "title": "Classic Spaghetti Carbonara",
-      "ingredients": [
-        "200g spaghetti",
-        "100g pancetta",
-        "2 large eggs",
-        "50g pecorino cheese",
-        "50g parmesan",
-        "Freshly ground black pepper",
-        "Salt",
-        "2 cloves garlic",
-        "50g unsalted butter"
-      ],
-      "instructions": "Cook the spaghetti. Meanwhile, heat a pan and cook the pancetta with the garlic. Beat the eggs and mix with the cheese. Combine everything together, add some pasta water if necessary, and season with pepper.",
-      "img": "/img/carbonara.jpg",
-      "energyValue": "600 kcal",
-      "steps": [
-        "Cook the spaghetti in salted boiling water.",
-        "Heat a pan and cook the pancetta with the garlic until crispy.",
-        "Beat the eggs in a bowl and mix with grated pecorino and parmesan cheese.",
-        "Combine the cooked spaghetti, pancetta, and egg mixture together in the pan.",
-        "Add some pasta water to reach the desired consistency.",
-        "Season with freshly ground black pepper."
-      ],
-      "isFavorite": false
-    },
-    {
-      "id":2,
-      "title": "Vegetable Stir Fry",
-      "ingredients": [
-        "2 tablespoons vegetable oil",
-        "1 onion, sliced",
-        "2 garlic cloves, minced",
-        "1 red bell pepper, sliced",
-        "1 yellow bell pepper, sliced",
-        "1 zucchini, sliced",
-        "2 cups broccoli florets",
-        "3 tablespoons soy sauce",
-        "1 tablespoon hoisin sauce",
-        "1 teaspoon sesame oil",
-        "Cooked rice or noodles"
-      ],
-      "instructions": "Heat oil in a large skillet or wok. Add onion and garlic, cook until softened. Add bell peppers, zucchini, and broccoli, stir fry until tender-crisp. Stir in soy sauce, hoisin sauce, and sesame oil. Serve over rice or noodles.",
-      "img": "/img/Vegetable-Stir-Fry-2.jpg",
-      "energyValue": "300 kcal",
-      "steps": [
-        "Heat vegetable oil in a large skillet or wok over medium-high heat.",
-        "Add sliced onion and minced garlic, cook until softened.",
-        "Add sliced bell peppers, zucchini, and broccoli florets, stir fry until tender-crisp.",
-        "Stir in soy sauce, hoisin sauce, and sesame oil, mix well.",
-        "Serve the stir fry over cooked rice or noodles."
-      ],
-      "isFavorite": true
-    },
-    {
-      "id":3,
-      "title": "Chocolate Chip Cookies",
-      "ingredients": [
-        "1 cup unsalted butter, softened",
-        "1 cup white sugar",
-        "1 cup packed brown sugar",
-        "2 eggs",
-        "2 teaspoons vanilla extract",
-        "3 cups all-purpose flour",
-        "1 teaspoon baking soda",
-        "2 teaspoons hot water",
-        "1/2 teaspoon salt",
-        "2 cups semisweet chocolate chips",
-        "1 cup chopped walnuts (optional)"
-      ],
-      "instructions": "Preheat oven to 350°F (175°C). Cream together the butter and sugars. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water and add to the batter with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans. Bake for about 10 minutes, or until edges are nicely browned.",
-      "img": "/img/chocolate-chip-cookies-44-1200x1703.jpg",
-      "energyValue": "200 kcal per cookie",
+      "img": "https://www.verybestbaking.com/sites/g/files/jgfbjl326/files/srh_recipes/4bc5edb86285aadc28069f51d9e98974.jpg",
+      "energyValue": "1000 kcal",
       "steps": [
         "Preheat oven to 350°F (175°C).",
         "Cream together the butter and both sugars until smooth.",
