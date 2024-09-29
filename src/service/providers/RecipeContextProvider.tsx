@@ -1,15 +1,15 @@
 
 
 import data from '../data/data.json'
-import { createContext,useState,useContext, useReducer} from 'react';
+import { createContext,useState,useContext, useReducer,Reducer} from 'react';
 import { Recipe, Children, RecipeContext, Initstate, ReducerAction,Reducer_Action_Type} from '../types';
-const RecipeData = createContext<undefined | RecipeContext>(undefined)
+
 
 const initState = {
-    recipes: data.recipes,
+    recipes: localStorage.getItem('recipes') ? JSON.parse(localStorage.getItem("recipes") || "{}") : data.recipes,
     modal: undefined
 }
-
+const RecipeData = createContext<undefined | RecipeContext>(undefined)
 
 
 const RecipeContextProvider = ({children} : Children) => {
@@ -19,12 +19,18 @@ const RecipeContextProvider = ({children} : Children) => {
     const context : RecipeContext = {
         recipes: state.recipes,
         modal: state.modal,
-        addRecipe: (recipe) => dispatch({type: Reducer_Action_Type.ADD_RECIPE}),
-        removeRecipe: (recipe) => dispatch({type: Reducer_Action_Type.REMOVE_RECIPE}),
+        setRecipes: (recipes) => dispatch({type: Reducer_Action_Type.SET_RECIPE,payload: recipes}),
+        addRecipe: (recipe ) => dispatch({type: Reducer_Action_Type.ADD_RECIPE,payload: recipe}),
+        removeRecipe: (recipe) => dispatch({type: Reducer_Action_Type.REMOVE_RECIPE,payload: recipe}),
         isModalOpen: isModalOpen,
         setIsModalOpen: setIsModalOpen,
         setModal: (context) => dispatch({type: Reducer_Action_Type.SET_MODAL,payload: context}),
-        clearModal: () => dispatch({type: Reducer_Action_Type.CLEAR_MODAL})
+        clearModal: () => dispatch({type: Reducer_Action_Type.CLEAR_MODAL}),
+        addIngredient: (recipe) => dispatch({type:Reducer_Action_Type.ADD_INGREDIENT,payload: recipe}),
+        addStep: (recipe) => dispatch({type: Reducer_Action_Type.ADD_STEP,payload: recipe}),
+        removeIngredient: (recipe) => dispatch({type:Reducer_Action_Type.REMOVE_INGREDIENT,payload: recipe}),
+        removeStep: (recipe) => dispatch({type:Reducer_Action_Type.REMOVE_STEP,payload: recipe}),
+
     }
     
     return (
@@ -39,7 +45,7 @@ function recipeReducer(state: Initstate, action: ReducerAction){
         case Reducer_Action_Type.ADD_RECIPE:
             return {
                 ...state,
-                
+                recipes: payload
             };
         case Reducer_Action_Type.REMOVE_RECIPE:
             return {
@@ -56,7 +62,32 @@ function recipeReducer(state: Initstate, action: ReducerAction){
                 ...state,
                 modal: payload
             };
-        
+        case Reducer_Action_Type.ADD_INGREDIENT:
+            return{
+                ...state,
+
+            }
+        case Reducer_Action_Type.REMOVE_INGREDIENT:
+
+            return{
+                ...state,
+
+            }
+        case Reducer_Action_Type.ADD_STEP:
+            return{
+                ...state,
+
+            }
+        case Reducer_Action_Type.REMOVE_STEP:
+            return{
+                ...state,
+
+            }
+        case Reducer_Action_Type.SET_RECIPE:
+        return{
+            ...state,
+
+        }
     }
 }
 
