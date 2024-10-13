@@ -1,3 +1,5 @@
+import { transform } from 'typescript'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -25,9 +27,11 @@ export default {
         },
         ".scrollbar-webkit":{
           "&::-webkit-scrollbar" : {
+            
             width: "10px",
             borderRadius: "50px",
-            marginRight: "10px"
+            
+
           },
           "&::-webkit-scrollbar-track" : {
             background: "#E5E5E5",

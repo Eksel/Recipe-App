@@ -1,14 +1,17 @@
 import React from 'react'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
+import { Reorder,useMotionValue } from 'framer-motion';
 
-type props = {content: string; index: number}
+type props = {content: string;}
 
-export default function StepsItem({content,index}:props) {
+export default function StepsItem({content}:props) {
+  const y = useMotionValue(0);
   return (
-    <div className='p-2 m-1 rounded-md  bg-green-200 shadow-md '>
+    <Reorder.Item id={content} value={content} style={{y}}>
+      <div className='p-2 m-1 rounded-md  bg-green-200 shadow-md '>
         <div>
-             {content}
+            {content}
         </div>
         <div className='flex text-xl text-white'>
             <span className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
@@ -19,6 +22,8 @@ export default function StepsItem({content,index}:props) {
             </span>
             
         </div>
-    </div>
+      </div>
+    </Reorder.Item>
+    
   )
 }

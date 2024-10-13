@@ -31,13 +31,13 @@ const CardRecipe = ({item}: Item) => {
 
     return (
     <>
-        <div onClick={handleModalOpen} className='w-72 mx-6 my-10 flex flex-col  justify-center rounded-lg shadow-xl hover:cursor-pointer hover:brightness-90'>
-            <div className=''>
+        <div className='w-72 mx-6 my-10 flex flex-col  justify-center rounded-lg shadow-xl hover:cursor-pointer hover:brightness-90'>
+            <div className=''  onClick={handleModalOpen}>
                 <img src={item.img} className=' aspect-square rounded-t-lg object-cover ' alt="" />
             </div>
             
             <div className='flex justify-between items-center m-3 font-bold '>
-                <h1 className=''>{item.title}</h1>
+                <h1 className=''  onClick={handleModalOpen}>{item.title}</h1>
                 
                     
                 

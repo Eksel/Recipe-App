@@ -8,7 +8,7 @@ export default function RecipesPage() {
   const {isModalOpen} = useRecipeContext()
   
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       <h1 className="text-5xl m- flex flex-row font-thin   text-center p-2 my-6 ">
         <IoFastFoodOutline/>
         <p>Click to see Recipe</p> 

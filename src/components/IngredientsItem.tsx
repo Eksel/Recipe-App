@@ -2,13 +2,13 @@ import React from 'react'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import {Reorder, useMotionValue} from "framer-motion"
-type props = {content: string; index: number}
+type props = {content: string;}
 
-export default function IngredientsItem({content,index}:props) {
+export default function IngredientsItem({content}:props) {
 
     const y = useMotionValue(0);
   return (
-    <Reorder.Item key={index} value={content} style={{y}}>
+    <Reorder.Item  id={content} value={content} style={{y}}>
           
         
         <div className='flex flex-row justify-between items-center p-2 m-1 my-3 rounded-md  bg-green-200 shadow-md '>
