@@ -3,10 +3,17 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import Modal from "../components/modal/Modal";
 import { MdEmojiFoodBeverage } from "react-icons/md";
 import { useRecipeContext } from "../service/providers/RecipeContextProvider";
+import { useEffect, useState } from "react";
 
 export default function RecipesPage() {
   const {isModalOpen} = useRecipeContext()
-  
+  const {recipes} = useRecipeContext()
+  const [localRecipes, setLocalRecipes] = useState(recipes);
+
+  useEffect(() => {
+    setLocalRecipes(recipes)
+  }, [localRecipes]);
+
   return (
     <div className="flex flex-col items-center ">
       <h1 className="text-5xl m- flex flex-row font-thin   text-center p-2 my-6 ">
@@ -14,8 +21,8 @@ export default function RecipesPage() {
         <p>Click to see Recipe</p> 
         <MdEmojiFoodBeverage/>  
       </h1>
-      <CardConteiner/>
-      {isModalOpen && <Modal />}
+      <CardConteiner localRecipes={localRecipes}/>
+      {isModalOpen && <Modal localRecipes={localRecipes} setLocalRecipes={setLocalRecipes}/>}
     </div>
   )
 }

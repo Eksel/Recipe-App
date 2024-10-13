@@ -1,23 +1,22 @@
-import React from 'react';
-import { Recipe } from '../../service/types';
 import { useRecipeContext } from '../../service/providers/RecipeContextProvider';
-import { FaStar } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
-import { useState,useEffect } from 'react';
-import { FaRegTrashAlt } from "react-icons/fa";
-import { CiEdit } from "react-icons/ci";
+import { useState } from 'react';
 import StepsItem from './StepsItem';
 import IngredientsItem from './IngredientsItem';
-import {Reorder} from "framer-motion"
+import { Reorder } from "framer-motion"
 import { FaRegSave } from "react-icons/fa";
 import ImageRecipe from './ImageRecipe';
 import InstructionsRecipe from './InstructionsRecipe';
 import Other from './Other';
+import { Recipe } from '../../service/types';
+import { MdDeleteForever } from "react-icons/md";
 
+interface Props {
+    localRecipes: Recipe[];
+    setLocalRecipes: React.Dispatch<React.SetStateAction<Recipe[]>>
+}
 
-// type isFavorite = {isFavorite:boolean;setIsFavorite: React.Dispatch<React.SetStateAction<boolean>>}
-
-const Modal = () => {
+const Modal = (props: Props) => {
+    const {localRecipes,setLocalRecipes} = props
     
     const {recipes,modal,setIsModalOpen,clearModal,removeRecipe,saveData,setRecipe} = useRecipeContext()
     const [title,setTitle] = useState(modal ? modal.title : "")
@@ -41,21 +40,19 @@ const Modal = () => {
             saveData()
         }
     }
+
     function handleChangeFavoriteButton() {
         if(modal){
-            console.log("change")
-            let newItem = {
+            const newItem = {
                 ...modal,
                 isFavorite: !isFavorite
             }
             setRecipe(newItem)
-            saveData()
+            setLocalRecipes([])
         }
         setIsFavorite( prev => {
             return !prev
         })
-        
-        
     }
     // const newRecipe = () => {
     //     return {
@@ -80,8 +77,8 @@ const Modal = () => {
         <div className='modal flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 p-4 bg-zinc-200 rounded-3xl shadow-xl overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200'>
             <div className='w-full flex justify-end'>
                 <div className='fixed flex flex-row'>
-                    <div onClick={handleRecipeDelete} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600'>
-                        <FaRegSave /> <div>Delete</div> 
+                    <div onClick={handleRecipeDelete} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-red-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-red-600'>
+                        <MdDeleteForever/> <div>Delete</div> 
                     </div>
                     <div className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600'>
                         <FaRegSave /> <div>Save</div> 

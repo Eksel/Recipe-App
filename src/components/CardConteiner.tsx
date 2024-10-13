@@ -1,17 +1,22 @@
 import CardRecipe from './CardRecipe'
-import { useRecipeContext } from '../service/providers/RecipeContextProvider'
 import CreateNewRecipeCard from './CreateNewRecipeCard'
-import { useEffect, useState } from 'react'
+import { Recipe } from '../service/types'
+import { useRecipeContext } from '../service/providers/RecipeContextProvider';
 
 
-const CardConteiner = () => {
-    const {recipes} = useRecipeContext()
-    
+interface Props {
+  localRecipes: Recipe[];
+  
+}
+
+const CardConteiner = (props:Props) => {
+  const {localRecipes} = props
+  
   return (
     <div className='flex flex-wrap items-center justify-center'>
-      {recipes && recipes.map((value,index)=>{
+      {localRecipes && localRecipes.map((value,index)=>{
        return (
-        <CardRecipe key={index} item={value}/>
+        <CardRecipe key={index} item={value} />
        )
       })}
       <CreateNewRecipeCard/>

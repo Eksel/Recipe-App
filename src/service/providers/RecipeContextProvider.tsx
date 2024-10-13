@@ -20,6 +20,7 @@ const RecipeContextProvider = ({children} : Children) => {
     const context : RecipeContext = {
         recipes: state.recipes,
         modal: state.modal,
+        setRecipes: setRecipes,
         setRecipe: setRecipe,
         addRecipe: addRecipe,
         removeRecipe: removeRecipe,
@@ -38,7 +39,10 @@ const RecipeContextProvider = ({children} : Children) => {
     }
     saveData()
 
-    
+
+    function setRecipes(recipe: Recipe[]){
+        dispatch({type: Reducer_Action_Type.SET_RECIPES, payload: recipe})
+    }
     function setRecipe(recipe: Recipe){
         dispatch({type: Reducer_Action_Type.SET_RECIPE,payload: recipe})
         saveData()
@@ -124,6 +128,11 @@ function recipeReducer(state: Initstate, action: ReducerAction){
                     return recipe
                 }
             })
+        }
+        case Reducer_Action_Type.SET_RECIPES:
+        return{
+            ...state,
+            recipes: payload
         }
     }
 }

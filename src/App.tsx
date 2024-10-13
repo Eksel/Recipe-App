@@ -1,5 +1,3 @@
-
-
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Home from './pages/Home'
 import FavRecipes from './pages/FavRecipes'
@@ -7,8 +5,8 @@ import RecipesPage from './pages/RecipesPage'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-import RecipeContextProvider, { useRecipeContext } from "./service/providers/RecipeContextProvider"
-import Modal from "./components/modal/Modal"
+import RecipeContextProvider from "./service/providers/RecipeContextProvider"
+
 function App() {
   
 

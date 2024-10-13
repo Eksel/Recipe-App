@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { Reorder,useMotionValue } from 'framer-motion';

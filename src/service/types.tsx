@@ -16,7 +16,7 @@ interface initialData{
 interface RecipeContext {
     recipes: Recipe[];
     modal: undefined | Recipe;
-    
+    setRecipes: (recipe: Recipe[]) => void; 
     setRecipe: (recipe: Recipe) => void;
     addRecipe: (recipe: Recipe) => void;
     removeRecipe: (recipe: Recipe) => void;
@@ -44,7 +44,7 @@ type ReducerAction = {
 
 type Initstate = {recipes: Recipe[], modal: undefined | Recipe}
 const enum Reducer_Action_Type{
-    
+    SET_RECIPES = "SET_RECIPES",
     SET_RECIPE = 'SET_RECIPE',
     ADD_RECIPE = "ADD_RECIPE",
     REMOVE_RECIPE = "REMOVE_RECIPE",

@@ -1,44 +1,40 @@
-import React from 'react'
 import { Recipe } from '../service/types'
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
-import { RxDividerVertical } from 'react-icons/rx';
 import { useState } from 'react';
 import { useRecipeContext } from '../service/providers/RecipeContextProvider';
-import { GiConsoleController } from 'react-icons/gi';
+
+interface Props {
+    item: Recipe;
+    
+}
 
 
-type Item = { item: Recipe}
-
-
-const CardRecipe = ({item}: Item) => {
+const CardRecipe = (props:Props) => {
+    const {item} = props
+    const [RecipeCard, setRecipeCard] = useState(item);
     const [isFavorite,setIsFavorite] = useState(item.isFavorite)
-    const {setModal,setIsModalOpen,isModalOpen,setFavorite,saveData} = useRecipeContext()
+    const {setModal,setIsModalOpen,isModalOpen,setRecipe,saveData} = useRecipeContext()
+
+    
+
     function handleModalOpen(){
         if(!isModalOpen){
-            setModal(item)
+            setModal(RecipeCard)
             setIsModalOpen(true)
         }
-        
     }
     
     
 
     function handleChangeFavoriteButton() {
-
         const newItem = {
             ...item,
             isFavorite: !isFavorite
         }
-        setFavorite(newItem)
-        saveData()
-        setIsFavorite(!isFavorite)
-        
-        console.log(isFavorite)
-        
-        
-        
-        
+        setRecipe(newItem)
+        setIsFavorite(prev => !prev)
+        setRecipeCard(newItem)
     }
     
 

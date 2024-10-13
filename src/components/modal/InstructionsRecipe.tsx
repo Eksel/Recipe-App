@@ -1,6 +1,5 @@
 import { CiEdit } from "react-icons/ci";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { Recipe } from "../../service/types";
 
 interface Props {
     instructions: string;
