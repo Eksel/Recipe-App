@@ -1,14 +1,15 @@
 
 
 import data from '../data/data.json'
-import { createContext,useState,useContext, useReducer,Reducer} from 'react';
-import { Recipe, Children, RecipeContext, Initstate, ReducerAction,Reducer_Action_Type} from '../types';
+import { createContext,useState,useContext, useReducer} from 'react';
+import { Children, RecipeContext, Initstate, ReducerAction,Reducer_Action_Type,Recipe} from '../types';
 
 
 const initState = {
     recipes: localStorage.getItem('recipes') ? JSON.parse(localStorage.getItem("recipes") || "{}") : data.recipes,
     modal: undefined
 }
+
 const RecipeData = createContext<undefined | RecipeContext>(undefined)
 
 
@@ -19,20 +20,51 @@ const RecipeContextProvider = ({children} : Children) => {
     const context : RecipeContext = {
         recipes: state.recipes,
         modal: state.modal,
-        setRecipes: (recipes) => dispatch({type: Reducer_Action_Type.SET_RECIPE,payload: recipes}),
-        addRecipe: (recipe ) => dispatch({type: Reducer_Action_Type.ADD_RECIPE,payload: recipe}),
-        removeRecipe: (recipe) => dispatch({type: Reducer_Action_Type.REMOVE_RECIPE,payload: recipe}),
+        setRecipe: setRecipe,
+        addRecipe: addRecipe,
+        removeRecipe: removeRecipe,
+        setFavorite: setFavorite,
         isModalOpen: isModalOpen,
-        setIsModalOpen: setIsModalOpen,
-        setModal: (context) => dispatch({type: Reducer_Action_Type.SET_MODAL,payload: context}),
-        clearModal: () => dispatch({type: Reducer_Action_Type.CLEAR_MODAL}),
-        addIngredient: (recipe) => dispatch({type:Reducer_Action_Type.ADD_INGREDIENT,payload: recipe}),
-        addStep: (recipe) => dispatch({type: Reducer_Action_Type.ADD_STEP,payload: recipe}),
-        removeIngredient: (recipe) => dispatch({type:Reducer_Action_Type.REMOVE_INGREDIENT,payload: recipe}),
-        removeStep: (recipe) => dispatch({type:Reducer_Action_Type.REMOVE_STEP,payload: recipe}),
-
+        setIsModalOpen: SetIsModalOpen,
+        setModal: setModal,
+        clearModal: clearModal,
+        saveData: () => saveData()
     }
+
+
+    function saveData(){
+        localStorage.setItem('recipes', JSON.stringify(state.recipes))
+        
+    }
+    saveData()
+
     
+    function setRecipe(recipe: Recipe){
+        dispatch({type: Reducer_Action_Type.SET_RECIPE,payload: recipe})
+        saveData()
+    }
+    function addRecipe(recipe: Recipe){
+        dispatch({type: Reducer_Action_Type.ADD_RECIPE, payload: recipe})
+        saveData()
+    }
+    function removeRecipe(recipe:Recipe){
+        dispatch({type: Reducer_Action_Type.REMOVE_RECIPE, payload: recipe})
+        saveData()
+    }
+    function setFavorite(recipe:Recipe){
+        dispatch({type: Reducer_Action_Type.SET_FAVORITE, payload: recipe})
+        saveData()
+    }
+    function SetIsModalOpen(bool:boolean){
+        setIsModalOpen(bool)
+    }
+    function setModal(context: Recipe | undefined){
+        dispatch({type: Reducer_Action_Type.SET_MODAL,payload: context})
+    }
+    function clearModal(){
+        dispatch({type: Reducer_Action_Type.CLEAR_MODAL})        
+    }
+
     return (
         <RecipeData.Provider value={context}>
             {children}
@@ -42,16 +74,6 @@ const RecipeContextProvider = ({children} : Children) => {
 function recipeReducer(state: Initstate, action: ReducerAction){
     const { type, payload} = action;
     switch (type) {
-        case Reducer_Action_Type.ADD_RECIPE:
-            return {
-                ...state,
-                recipes: payload
-            };
-        case Reducer_Action_Type.REMOVE_RECIPE:
-            return {
-                ...state,
-                
-            };
         case Reducer_Action_Type.CLEAR_MODAL:
             return {
                 ...state,
@@ -62,31 +84,46 @@ function recipeReducer(state: Initstate, action: ReducerAction){
                 ...state,
                 modal: payload
             };
-        case Reducer_Action_Type.ADD_INGREDIENT:
-            return{
-                ...state,
-
-            }
-        case Reducer_Action_Type.REMOVE_INGREDIENT:
-
-            return{
-                ...state,
-
-            }
-        case Reducer_Action_Type.ADD_STEP:
-            return{
-                ...state,
-
-            }
-        case Reducer_Action_Type.REMOVE_STEP:
-            return{
-                ...state,
-
-            }
         case Reducer_Action_Type.SET_RECIPE:
+            
         return{
             ...state,
-
+            recipes: state.recipes.map(recipe => {
+                if(recipe.id === payload.id){
+                    return payload
+                }else{
+                    return recipe
+                }
+            })
+        }
+        case Reducer_Action_Type.ADD_RECIPE:
+        return{
+            ...state,
+            recipes: [
+                ...state.recipes,
+                payload
+            ]
+        }
+        case Reducer_Action_Type.REMOVE_RECIPE:
+        return{
+            ...state,
+            recipes: state.recipes.filter(recipe =>{
+                if(recipe.id !== payload.id){
+                    return true
+                }
+            })
+        }
+        case Reducer_Action_Type.SET_FAVORITE:
+        return{
+            ...state,
+            recipes: state.recipes.map(recipe => {
+                if(recipe.id === payload.id){
+                    return {...recipe, isFavorite: payload.isFavorite}
+                }
+                else{
+                    return recipe
+                }
+            })
         }
     }
 }

@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { RxDividerVertical } from 'react-icons/rx';
 import { useState } from 'react';
 import { useRecipeContext } from '../service/providers/RecipeContextProvider';
+import { GiConsoleController } from 'react-icons/gi';
 
 
 type Item = { item: Recipe}
@@ -12,7 +13,7 @@ type Item = { item: Recipe}
 
 const CardRecipe = ({item}: Item) => {
     const [isFavorite,setIsFavorite] = useState(item.isFavorite)
-    const {setModal,setIsModalOpen,isModalOpen} = useRecipeContext()
+    const {setModal,setIsModalOpen,isModalOpen,setFavorite,saveData} = useRecipeContext()
     function handleModalOpen(){
         if(!isModalOpen){
             setModal(item)
@@ -20,20 +21,32 @@ const CardRecipe = ({item}: Item) => {
         }
         
     }
-
+    
     
 
     function handleChangeFavoriteButton() {
-        setIsFavorite( prev => {
-            return !prev
-        })
+
+        const newItem = {
+            ...item,
+            isFavorite: !isFavorite
+        }
+        setFavorite(newItem)
+        saveData()
+        setIsFavorite(!isFavorite)
+        
+        console.log(isFavorite)
+        
+        
+        
+        
     }
+    
 
     return (
     <>
         <div className='w-72 mx-6 my-10 flex flex-col  justify-center rounded-lg shadow-xl hover:cursor-pointer hover:brightness-90'>
             <div className=''  onClick={handleModalOpen}>
-                <img src={item.img} className=' aspect-square rounded-t-lg object-cover ' alt="" />
+                <img src={item.img} className='w-72 aspect-square rounded-t-lg object-cover ' alt="" />
             </div>
             
             <div className='flex justify-between items-center m-3 font-bold '>

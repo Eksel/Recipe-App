@@ -1,6 +1,6 @@
 import CardConteiner from "../components/CardConteiner"
 import { IoFastFoodOutline } from "react-icons/io5";
-import Modal from "../components/Modal";
+import Modal from "../components/modal/Modal";
 import { MdEmojiFoodBeverage } from "react-icons/md";
 import { useRecipeContext } from "../service/providers/RecipeContextProvider";
 

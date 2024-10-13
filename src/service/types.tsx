@@ -8,23 +8,25 @@ interface Recipe {
     steps: string[]; 
     isFavorite: boolean;
 }
-
+interface initialData{
+    recipes: Recipe[];
+    modal: undefined | Recipe;
+}
 
 interface RecipeContext {
     recipes: Recipe[];
     modal: undefined | Recipe;
     
-    setRecipes: (recipes: Recipe[]) => void;
+    setRecipe: (recipe: Recipe) => void;
     addRecipe: (recipe: Recipe) => void;
     removeRecipe: (recipe: Recipe) => void;
+    setFavorite: (recipe:Recipe) => void;
+    
     isModalOpen: boolean;
-    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsModalOpen: (bool: boolean) => void;
     setModal: (context: Recipe | undefined) => void;
     clearModal: () => void;
-    addIngredient: (recipe: Recipe) => void;
-    addStep: (recipe: Recipe) => void;
-    removeIngredient: (recipe: Recipe) => void;
-    removeStep: (recipe: Recipe) => void;
+    saveData: () => void;
     
 }
 
@@ -44,16 +46,13 @@ type Initstate = {recipes: Recipe[], modal: undefined | Recipe}
 const enum Reducer_Action_Type{
     
     SET_RECIPE = 'SET_RECIPE',
-    ADD_RECIPE = 'ADD_RECIPE',
-    REMOVE_RECIPE = 'REMOVE_RECIPE',
+    ADD_RECIPE = "ADD_RECIPE",
+    REMOVE_RECIPE = "REMOVE_RECIPE",
     SET_MODAL = 'SET_MODAL',
     CLEAR_MODAL = 'CLEAR_MODAL',
-    ADD_INGREDIENT = 'ADD_INGREDIENT',
-    ADD_STEP = 'ADD_STEP',
-    REMOVE_INGREDIENT = 'REMOVE_INGREDIENT',
-    REMOVE_STEP = 'REMOVE_STEP',
+    SET_FAVORITE = "SET_FAVORITE"
     
 }
 
-export type {Recipe, RecipeContext, Children,itemRecipe,ReducerAction,Initstate};
+export type {Recipe, RecipeContext, Children,itemRecipe,ReducerAction,Initstate,initialData};
 export {Reducer_Action_Type}

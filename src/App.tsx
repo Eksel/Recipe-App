@@ -8,7 +8,7 @@ import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import RecipeContextProvider, { useRecipeContext } from "./service/providers/RecipeContextProvider"
-import Modal from "./components/Modal"
+import Modal from "./components/modal/Modal"
 function App() {
   
 

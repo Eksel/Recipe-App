@@ -1,6 +1,6 @@
 import React from 'react';
-import { Recipe } from '../service/types';
-import { useRecipeContext } from '../service/providers/RecipeContextProvider';
+import { Recipe } from '../../service/types';
+import { useRecipeContext } from '../../service/providers/RecipeContextProvider';
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { useState,useEffect } from 'react';
@@ -10,38 +10,79 @@ import StepsItem from './StepsItem';
 import IngredientsItem from './IngredientsItem';
 import {Reorder} from "framer-motion"
 import { FaRegSave } from "react-icons/fa";
+import ImageRecipe from './ImageRecipe';
+import InstructionsRecipe from './InstructionsRecipe';
+import Other from './Other';
+
 
 // type isFavorite = {isFavorite:boolean;setIsFavorite: React.Dispatch<React.SetStateAction<boolean>>}
 
 const Modal = () => {
     
-    const {recipes,modal,setIsModalOpen,clearModal,addIngredient,removeIngredient,setRecipes} = useRecipeContext()
-
-    
-    const [isFavorite, setIsFavorite] = useState(modal?.isFavorite);
+    const {recipes,modal,setIsModalOpen,clearModal,removeRecipe,saveData,setRecipe} = useRecipeContext()
+    const [title,setTitle] = useState(modal ? modal.title : "")
+    const [image,setImage] = useState(modal ? modal.img : "")
+    const [instructions,setInstructions] = useState(modal ? modal.instructions : "")
+    const [isFavorite, setIsFavorite] = useState(modal ? modal.isFavorite : false);
     const [Ingredients, setIngredients] = useState( modal ? modal.ingredients : []);
     const [Steps, setSteps] = useState( modal ? modal.steps : []);
-    
-    
-    
-    
+    const [energyValue,setEnergyValue] = useState(modal ? modal.energyValue : "")
 
-
+    
+    
+    function getRandomInt(max: number) {
+        return Math.floor(Math.random() * max);
+      }
+    
+    function handleRecipeDelete(){
+        if(modal){
+            closeModal()
+            removeRecipe(modal)
+            saveData()
+        }
+    }
     function handleChangeFavoriteButton() {
+        if(modal){
+            console.log("change")
+            let newItem = {
+                ...modal,
+                isFavorite: !isFavorite
+            }
+            setRecipe(newItem)
+            saveData()
+        }
         setIsFavorite( prev => {
             return !prev
         })
-    }
-    const closeModal = () => {
         
+        
+    }
+    // const newRecipe = () => {
+    //     return {
+    //         id: modal ? modal.id : getRandomInt(10000),
+    //         title: title,
+    //         ingredients: Ingredients,
+    //         instructions: instructions,
+    //         img: image,
+    //         energyValue: energyValue, 
+    //         steps: Steps, 
+    //         isFavorite: isFavorite
+    //     }
+    // }
+    function closeModal() {
         setIsModalOpen(false)
         clearModal()
-      }
+    }
+    
+
     
     return (
         <div className='modal flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 p-4 bg-zinc-200 rounded-3xl shadow-xl overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200'>
             <div className='w-full flex justify-end'>
                 <div className='fixed flex flex-row'>
+                    <div onClick={handleRecipeDelete} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600'>
+                        <FaRegSave /> <div>Delete</div> 
+                    </div>
                     <div className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600'>
                         <FaRegSave /> <div>Save</div> 
                     </div>
@@ -54,38 +95,8 @@ const Modal = () => {
                 
             </div>
             <section className='grid grid-cols-3 grid-rows-1 p-4 w-full'>
-                <div className='flex flex-col mx-4 px-10 py-4 h-fit items-center bg-emerald-100 rounded-lg shadow-lg'>
-                    <h1 className='flex justify-center m-4 p-2 rounded-md  font-bold text-3xl '>
-                        {modal?.title}
-                    </h1>   
-                    <img src={modal?.img} alt=""  className=' aspect-square object-cover w-1/2 m-6 shadow-2xl rounded-lg'/>
-                    <div className=' flex justify-end text-xl text-white'>
-                        <span className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
-                            <CiEdit />
-                        </span>
-                        <span className='bg-red-700 p-1 m-1  rounded-md hover:cursor-pointer'>
-                            <FaRegTrashAlt />
-                        </span>
-                        
-                    </div>
-                </div>
-                <div className='col-span-2  mx-4 px-10 py-4 bg-emerald-100 rounded-lg shadow-lg'>
-                    <h2 className='flex justify-center m-4 p-2 rounded-md  font-bold text-3xl'>
-                        Recipe:
-                    </h2>
-                    <div className='text-center flex justify-center items-center text-lg'>
-                        {modal?.instructions}
-                    </div>
-                    <div className=' flex justify-end text-xl text-white'>
-                        <span className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
-                            <CiEdit />
-                        </span>
-                        <span className='bg-red-700 p-1 m-1  rounded-md hover:cursor-pointer'>
-                            <FaRegTrashAlt />
-                        </span>
-                        
-                    </div>
-                </div>
+                <ImageRecipe title={title} setTitle={setTitle} image={image} setImage={setImage}/>
+                <InstructionsRecipe instructions={instructions} setInstructions={setInstructions} />
             </section>
             
             
@@ -117,30 +128,13 @@ const Modal = () => {
                     </div>
                     <div className='flex  justify-center items-center p-2 m-1 rounded-md  bg-green-500 shadow-md hover:bg-green-600 transition-colors hover:cursor-pointer'>+ Add step</div>
                 </div>
-                <div className='col-span-3 mx-4 p-6 bg-emerald-100 rounded-lg shadow-lg'>
-                    <div onClick={handleChangeFavoriteButton} className=' flex flex-col justify-center items-center p-10 m-4 bg-yellow-100 rounded-lg shadow-md text-3xl hover:cursor-pointer'>
-                        <h1 className='text-2xl font-bold' >Favorite:</h1>
-                        {isFavorite ? <FaStar className='text-yellow-400 hover:text-yellow-500  '/> : <FaRegStar  className='text-yellow-400 hover:text-yellow-500'/>}
-                    </div>
-                    <div className=' flex flex-col justify-center items-center p-10 m-4 bg-yellow-100 rounded-lg shadow-md text-2xl'>
-                        <h1 className='font-bold'>Energy Value: </h1>
-                        {modal?.energyValue}
-                        <div className=' flex justify-end text-xl text-white'>
-                            <span className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
-                                <CiEdit />
-                            </span>
-                            <span className='bg-red-700 p-1 m-1  rounded-md hover:cursor-pointer'>
-                                <FaRegTrashAlt />
-                            </span>
-                            
-                        </div>
-                    </div>
-                    
-                </div>
+                <Other  handleChangeFavoriteButton={handleChangeFavoriteButton} isFavorite={isFavorite} energyValue={energyValue} setEnergyValue={setEnergyValue}/>
             </section>
             
         </div>
     );
+      
+      
 }
 
 export default Modal;
