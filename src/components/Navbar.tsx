@@ -4,7 +4,7 @@ import { LuClipboardList } from "react-icons/lu";
 
 const Navbar = () => {
     return (
-        <div className='navbar bg-gray-100 flex justify-between items-center p-3 shadow-md '>
+        <div className='navbar bg-gray-100 flex justify-between items-center p-3 shadow-md  z-50'>
             <Link to="/" className='p-2 transition-colors hover:bg-gray-400 bg-gray-100 rounded-md '>
                 <div className="logo flex justify-center text-3xl items-center">
                     

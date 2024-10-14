@@ -26,7 +26,7 @@ const Modal = (props: Props) => {
     const [Ingredients, setIngredients] = useState( modal ? modal.ingredients : []);
     const [Steps, setSteps] = useState( modal ? modal.steps : []);
     const [energyValue,setEnergyValue] = useState(modal ? modal.energyValue : "")
-
+    const [edited, setEdited] = useState(false);
     
     
     function getRandomInt(max: number) {
@@ -54,18 +54,26 @@ const Modal = (props: Props) => {
             return !prev
         })
     }
-    // const newRecipe = () => {
-    //     return {
-    //         id: modal ? modal.id : getRandomInt(10000),
-    //         title: title,
-    //         ingredients: Ingredients,
-    //         instructions: instructions,
-    //         img: image,
-    //         energyValue: energyValue, 
-    //         steps: Steps, 
-    //         isFavorite: isFavorite
-    //     }
-    // }
+    function handleSaveClick(){
+        if(modal){
+            const newItem = newRecipe()
+            setRecipe(newItem)
+            setLocalRecipes([])
+            saveData()
+        }
+    }
+    const newRecipe = () => {
+        return {
+            id: modal ? modal.id : getRandomInt(10000),
+            title: title,
+            ingredients: Ingredients,
+            instructions: instructions,
+            img: image,
+            energyValue: energyValue, 
+            steps: Steps, 
+            isFavorite: isFavorite
+        }
+    }
     function closeModal() {
         setIsModalOpen(false)
         clearModal()
@@ -80,7 +88,7 @@ const Modal = (props: Props) => {
                     <div onClick={handleRecipeDelete} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-red-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-red-600'>
                         <MdDeleteForever/> <div>Delete</div> 
                     </div>
-                    <div className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600'>
+                    <div onClick={handleSaveClick} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600'>
                         <FaRegSave /> <div>Save</div> 
                     </div>
                     <div onClick={closeModal} className=' hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-gray-800 flex justify-center items-center text-xl font-bold rounded-md  mx-2 px-4 py-2 text-white  bg-black' >
