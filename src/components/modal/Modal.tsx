@@ -28,16 +28,20 @@ const Modal = (props: Props) => {
     const [energyValue,setEnergyValue] = useState(modal ? modal.energyValue : "")
     const [edited, setEdited] = useState(false);
     
-    
+    function reloadCards(){
+        setLocalRecipes([])
+    }
+
     function getRandomInt(max: number) {
         return Math.floor(Math.random() * max);
       }
     
     function handleRecipeDelete(){
         if(modal){
-            closeModal()
             removeRecipe(modal)
             saveData()
+            reloadCards()
+            closeModal()
         }
     }
 
@@ -48,7 +52,7 @@ const Modal = (props: Props) => {
                 isFavorite: !isFavorite
             }
             setRecipe(newItem)
-            setLocalRecipes([])
+            reloadCards();
         }
         setIsFavorite( prev => {
             return !prev
@@ -58,7 +62,7 @@ const Modal = (props: Props) => {
         if(modal){
             const newItem = newRecipe()
             setRecipe(newItem)
-            setLocalRecipes([])
+            reloadCards()
             saveData()
         }
     }
@@ -84,7 +88,7 @@ const Modal = (props: Props) => {
     return (
         <div className='modal flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 p-4 bg-zinc-200 rounded-3xl shadow-xl overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200'>
             <div className='w-full flex justify-end'>
-                <div className='fixed flex flex-row'>
+                <div className='absolute flex flex-row'>
                     <div onClick={handleRecipeDelete} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-red-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-red-600'>
                         <MdDeleteForever/> <div>Delete</div> 
                     </div>

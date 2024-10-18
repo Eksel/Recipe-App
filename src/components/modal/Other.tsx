@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CiEdit } from 'react-icons/ci'
 import { FaRegStar, FaRegTrashAlt, FaStar } from 'react-icons/fa'
+import { IoClose } from "react-icons/io5";
 
 interface Props{
     handleChangeFavoriteButton: () => void;
@@ -11,6 +12,7 @@ interface Props{
 
 export default function Other(props : Props) {
     const {handleChangeFavoriteButton, isFavorite, energyValue, setEnergyValue} = props;
+    const [onEdit, setonEdit] = useState(false);
     return (
         <div className='col-span-3 mx-4 p-6 bg-emerald-100 rounded-lg shadow-lg'>
             <div onClick={handleChangeFavoriteButton} className=' flex flex-col justify-center items-center p-10 m-4 bg-yellow-100 rounded-lg shadow-md text-3xl hover:cursor-pointer'>
@@ -22,7 +24,7 @@ export default function Other(props : Props) {
                 {energyValue}
                 <div className=' flex justify-end text-xl text-white'>
                     <span className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
-                        <CiEdit />
+                        {!onEdit ? <CiEdit /> : <IoClose/>}
                     </span>
                     <span className='bg-red-700 p-1 m-1  rounded-md hover:cursor-pointer'>
                         <FaRegTrashAlt />
