@@ -1,6 +1,6 @@
 import { useRecipeContext } from '../../service/providers/RecipeContextProvider';
 import { useState } from 'react';
-import StepsItem from './StepsItem';
+import Step from './Step';
 import IngredientsItem from './IngredientsItem';
 import { Reorder } from "framer-motion"
 import { FaRegSave } from "react-icons/fa";
@@ -9,6 +9,7 @@ import InstructionsRecipe from './InstructionsRecipe';
 import Other from './Other';
 import { Recipe } from '../../service/types';
 import { MdDeleteForever } from "react-icons/md";
+import Title from './Title';
 
 interface Props {
     localRecipes: Recipe[];
@@ -60,8 +61,7 @@ const Modal = (props: Props) => {
     }
     function handleSaveClick(){
         if(modal){
-            const newItem = newRecipe()
-            setRecipe(newItem)
+            setRecipe(newRecipe())
             reloadCards()
             saveData()
         }
@@ -82,7 +82,16 @@ const Modal = (props: Props) => {
         setIsModalOpen(false)
         clearModal()
     }
-    
+    const handleUpdateIngredient = (index: number, newValue: string) => {
+        const updatedIngredients = [...Ingredients];
+        updatedIngredients[index] = newValue;
+        setIngredients(updatedIngredients);
+    };
+    const handleUpdateSteps = (index: number, newValue: string) => {
+        const updatedSteps = [...Steps];
+        updatedSteps[index] = newValue;
+        setSteps(updatedSteps);
+    };
 
     
     return (
@@ -103,8 +112,12 @@ const Modal = (props: Props) => {
             
                 
             </div>
+            <section className=' p-4 w-full '>
+                <Title title={title} setTitle={setTitle}/>
+                
+            </section>
             <section className='grid grid-cols-3 grid-rows-1 p-4 w-full'>
-                <ImageRecipe title={title} setTitle={setTitle} image={image} setImage={setImage}/>
+                <ImageRecipe image={image} setImage={setImage}/>
                 <InstructionsRecipe instructions={instructions} setInstructions={setInstructions} />
             </section>
             
@@ -112,25 +125,25 @@ const Modal = (props: Props) => {
             <section className='grid grid-cols-12 grid-rows-1 p-4 w-full '>
                 
                 
-                <div className='col-span-3 mx-4 p-12 bg-emerald-100 rounded-lg shadow-lg '>
+                <div className='col-span-4 mx-4 p-12 bg-emerald-100 rounded-lg shadow-lg '>
                     <h2 className='mx-3 mb-3  text-center text-2xl font-bold'>Ingredients:</h2>
                         <div className='flex flex-col flex-wrap justify-center items-strech'>
                             <Reorder.Group axis="y" values={Ingredients} onReorder={setIngredients}>
                                 
-                                    {Ingredients.map((item)=>{
-                                        return (<IngredientsItem key={item} content={item}/>)
+                                    {Ingredients.map((item,key)=>{
+                                        return (<IngredientsItem id={key} key={key} content={item} handleUpdateIngredient={handleUpdateIngredient}/>)
                                     })}
                                 
                             </Reorder.Group>
                         </div>
                     <div className='flex  justify-center items-center p-2 m-1 rounded-md  bg-green-500 shadow-md hover:bg-green-600 transition-colors hover:cursor-pointer'>+ Add ingredient</div>
                 </div>
-                <div className='col-span-6 mx-4 p-12 bg-emerald-100 rounded-lg shadow-lg'>
+                <div className='col-span-5 mx-4 p-12 bg-emerald-100 rounded-lg shadow-lg'>
                 <h2 className='mx-3 mb-3 text-center text-2xl font-bold'>Steps:</h2>
                     <div className='flex flex-col flex-wrap justify-center items-strech'>
                         <Reorder.Group axis='y' values={Steps} onReorder={setSteps}>
-                            {Steps.map((item)=>{
-                                return (<StepsItem content={item} key={item} />)
+                            {Steps.map((item,key)=>{
+                                return (<Step id={key} key={key} content={item} handleUpdateSteps={handleUpdateSteps}/>)
                             })}
                         </Reorder.Group>
                     

@@ -26,7 +26,7 @@ export default function InstructionsRecipe(props: Props) {
     }
 
   return (
-    <div className='col-span-2 h-full flex flex-col justify-between  grid-grid-rows-5  mx-4 px-10 py-4 bg-emerald-100 rounded-lg shadow-lg'>
+    <div className='col-span-2 h-full flex flex-col justify-between   mx-4 px-10 py-4 bg-emerald-100 rounded-lg shadow-lg'>
         <div className="grid grid-rows-4">
             <h2 className='flex row-span-1 justify-center m-4 p-2 rounded-md  font-bold text-3xl'>
                 Recipe:
