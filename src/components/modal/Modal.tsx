@@ -86,6 +86,7 @@ const Modal = (props: Props) => {
         const updatedIngredients = [...Ingredients];
         updatedIngredients[index] = newValue;
         setIngredients(updatedIngredients);
+        console.log("huj")
     };
     const handleUpdateSteps = (index: number, newValue: string) => {
         const updatedSteps = [...Steps];
@@ -95,7 +96,7 @@ const Modal = (props: Props) => {
 
     
     return (
-        <div className='modal flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 p-4 bg-zinc-200 rounded-3xl shadow-xl overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200'>
+        <div className='modal z-50 flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 p-4 bg-zinc-200 rounded-3xl shadow-xl overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200'>
             <div className='w-full flex justify-end'>
                 <div className='absolute flex flex-row'>
                     <div onClick={handleRecipeDelete} className='hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-red-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-red-600'>
@@ -130,8 +131,8 @@ const Modal = (props: Props) => {
                         <div className='flex flex-col flex-wrap justify-center items-strech'>
                             <Reorder.Group axis="y" values={Ingredients} onReorder={setIngredients}>
                                 
-                                    {Ingredients.map((item,key)=>{
-                                        return (<IngredientsItem id={key} key={key} content={item} handleUpdateIngredient={handleUpdateIngredient}/>)
+                                    {Ingredients.map((item,index)=>{
+                                        return (<IngredientsItem key={item} id={index} content={item} handleUpdateIngredient={handleUpdateIngredient}/>)
                                     })}
                                 
                             </Reorder.Group>
@@ -142,8 +143,8 @@ const Modal = (props: Props) => {
                 <h2 className='mx-3 mb-3 text-center text-2xl font-bold'>Steps:</h2>
                     <div className='flex flex-col flex-wrap justify-center items-strech'>
                         <Reorder.Group axis='y' values={Steps} onReorder={setSteps}>
-                            {Steps.map((item,key)=>{
-                                return (<Step id={key} key={key} content={item} handleUpdateSteps={handleUpdateSteps}/>)
+                            {Steps.map((item,index)=>{
+                                return (<Step key={item} id={index} content={item} handleUpdateSteps={handleUpdateSteps}/>)
                             })}
                         </Reorder.Group>
                     

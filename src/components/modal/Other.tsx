@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { CiEdit } from "react-icons/ci";
-import { FaRegStar, FaRegTrashAlt, FaStar } from "react-icons/fa";
+import { FaCheck, FaRegStar, FaRegTrashAlt, FaStar } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import TextareaAutosize from 'react-textarea-autosize';
 
 interface Props {
     handleChangeFavoriteButton: () => void;
@@ -48,11 +49,12 @@ export default function Other(props: Props) {
                     <div className="w-full h-full">{energyValue}</div>
                 ) : (
                     <div className="w-full h-full">
-                        <textarea
+                        <TextareaAutosize
+                            minRows={1}
                             value={energyValue}
                             className="w-full h-full text-center"
                             onChange={handleInputChange}
-                        ></textarea>
+                        ></TextareaAutosize>
                     </div>
                 )}
                 <div className=" flex justify-end text-xl text-white">
@@ -60,7 +62,7 @@ export default function Other(props: Props) {
                         onClick={handleEditClick}
                         className="bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer"
                     >
-                        {!onEdit ? <CiEdit /> : <IoClose />}
+                        {!onEdit ? <CiEdit /> : <FaCheck/>}
                     </span>
                     <span
                         onClick={handleDeleteButton}

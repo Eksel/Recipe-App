@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { CiEdit } from "react-icons/ci";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
 interface Props {
@@ -51,7 +51,7 @@ export default function InstructionsRecipe(props: Props) {
         
         <div className=' flex justify-end text-xl text-white'>
             <span onClick={handleEditClick} className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
-                {!onEdit ? <CiEdit /> : <IoClose/>}
+                {!onEdit ? <CiEdit /> : <FaCheck/>}
                 
             </span>
             <span onClick={handleDeleteButton} className='bg-red-700 p-1 m-1  rounded-md hover:cursor-pointer'>

@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { CiEdit } from "react-icons/ci";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
 import { IoClose } from 'react-icons/io5';
 
 interface Props {
@@ -61,7 +61,7 @@ export default function ImageRecipe(props: Props) {
         
         <div className='row-span-1 flex flex-row justify-end w-full text-xl px-10 text-white'>
             <span onClick={handleEditClick} className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
-                {!onEdit ? <CiEdit /> : <IoClose/>}
+                {!onEdit ? <CiEdit /> : <FaCheck/>}
             </span>
             <span onClick={handleDeleteClick} className='bg-red-700 p-1 m-1  rounded-md hover:cursor-pointer'>
                 <FaRegTrashAlt />
