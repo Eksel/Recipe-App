@@ -76,7 +76,7 @@ const Modal = (props: Props) => {
             removeRecipe(modal);
             saveData();
             reloadCards();
-            closeModal();
+            handleCloseModal();
         }
     }
 
@@ -100,9 +100,11 @@ const Modal = (props: Props) => {
             saveData();
         } else {
             addRecipe(newRecipe());
-            reloadCards();
             saveData();
-            closeModal();
+            reloadCards();
+            
+            setIsModalOpen(false);
+            clearModal();
         }
         setEdited(false);
     }
@@ -118,7 +120,7 @@ const Modal = (props: Props) => {
             isFavorite: isFavorite,
         };
     };
-    function closeModal() {
+    function handleCloseModal() {
         if (edited) {
             toggleAlert();
         } else {
@@ -216,7 +218,7 @@ const Modal = (props: Props) => {
                         )}
 
                         <div
-                            onClick={closeModal}
+                            onClick={handleCloseModal}
                             className=" hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-gray-800 flex justify-center items-center text-xl font-bold rounded-md  mx-2 px-4 py-2 text-white  bg-black"
                         >
                             X
