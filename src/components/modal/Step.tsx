@@ -8,25 +8,28 @@ import TextareaAutosize from 'react-textarea-autosize';
 interface Props {
     content: string;
     id: number;
-    handleUpdateSteps: (index: number, newValue: string) => void;
+    handleUpdateSteps: (index: number, newValue: string, remowing:boolean) => void;
+    addEditor: () => void;
+    deleteEditor: () => void;
 }
 
 export default function StepsItem(props: Props) {
-    const { content, id, handleUpdateSteps } = props;
+    const { content, id, handleUpdateSteps,addEditor,deleteEditor} = props;
     const [value, setValue] = useState(content);
     const [onEdit, setOnEdit] = useState(false);
     const y = useMotionValue(0);
 
     function handleEditClick() {
         setOnEdit((prev) => !prev);
-        handleUpdateSteps(id, value);
+        handleUpdateSteps(id, value,false);
+        !onEdit ? addEditor() : deleteEditor()
     }
     function handleInputChange(e: any) {
         setValue(e.target.value);
         
     }
     function handleDeleteClick() {
-        setValue("");
+        handleUpdateSteps(id, value,true);
     }
     return (
         <Reorder.Item id={value} value={value} style={{ y }}>

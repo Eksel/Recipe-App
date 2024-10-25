@@ -6,15 +6,18 @@ import { IoClose } from "react-icons/io5";
 interface Props {
     instructions: string;
     setInstructions: React.Dispatch<React.SetStateAction<string>>;
+    addEditor: () => void;
+    deleteEditor: () => void;
 }
 
 export default function InstructionsRecipe(props: Props) {
-    const { instructions, setInstructions } = props;
+    const { instructions, setInstructions,addEditor,deleteEditor } = props;
     const [onEdit, setOnEdit] = useState(false);
     
 
     function handleEditClick(){
         setOnEdit(prev => !prev)
+        !onEdit ? addEditor() : deleteEditor()
     }
     function handleInputChange(e: any){
         setInstructions(e.target.value)

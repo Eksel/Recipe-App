@@ -6,14 +6,18 @@ import { IoClose } from 'react-icons/io5';
 interface Props {
     title: string;
     setTitle:React.Dispatch<React.SetStateAction<string>>;
+    addEditor: () => void;
+    deleteEditor: () => void;
 }
 
 export default function Title(props: Props) {
-    const {title,setTitle} = props
+    const {title,setTitle,addEditor,deleteEditor} = props
     const [onEdit, setOnEdit] = useState(false);
     
     function handleEditClick(){
         setOnEdit(prev => !prev)
+        !onEdit ? addEditor() : deleteEditor()
+        
     }
     function handleInputChange(e: any){
         setTitle(e.target.value)

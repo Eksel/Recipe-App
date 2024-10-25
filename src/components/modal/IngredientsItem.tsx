@@ -9,11 +9,13 @@ import TextareaAutosize from 'react-textarea-autosize';
 interface Props{
     content: string;
     id: number;
-    handleUpdateIngredient: (index: number, newValue: string) => void
+    handleUpdateIngredient: (index: number, newValue: string, remowing:boolean) => void;
+    addEditor: () => void;
+    deleteEditor: () => void;
 }
 
 export default function IngredientsItem(props:Props) {
-    const {content,id,handleUpdateIngredient} = props
+    const {content,id,handleUpdateIngredient,addEditor,deleteEditor} = props
     const [value,setValue] = useState(content)
     const y = useMotionValue(0);
     const [onEdit, setOnEdit] = useState(false);
@@ -21,7 +23,8 @@ export default function IngredientsItem(props:Props) {
 
     function handleEditClick(){
         setOnEdit(prev => !prev)
-        handleUpdateIngredient(id,value)
+        handleUpdateIngredient(id,value,false)
+        !onEdit ? addEditor() : deleteEditor()
     }
     function handleInputChange(e: any){
         setValue(e.target.value)
@@ -29,7 +32,7 @@ export default function IngredientsItem(props:Props) {
         
     }
     function handleDeleteClick(){
-        setValue("");
+        handleUpdateIngredient(id,value,true)
         
             
     }

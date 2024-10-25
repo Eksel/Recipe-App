@@ -9,6 +9,8 @@ interface Props {
     isFavorite: boolean;
     energyValue: string;
     setEnergyValue: React.Dispatch<React.SetStateAction<string>>;
+    addEditor: () => void;
+    deleteEditor: () => void;
 }
 
 export default function Other(props: Props) {
@@ -17,11 +19,14 @@ export default function Other(props: Props) {
         isFavorite,
         energyValue,
         setEnergyValue,
+        addEditor,
+        deleteEditor
     } = props;
     const [onEdit, setOnEdit] = useState(false);
 
     function handleEditClick() {
         setOnEdit((prev) => !prev);
+        !onEdit ? addEditor() : deleteEditor()
     }
     function handleInputChange(e: any) {
         setEnergyValue(e.target.value);
@@ -31,10 +36,10 @@ export default function Other(props: Props) {
     }
 
     return (
-        <div className="col-span-3 mx-4 p-6 bg-emerald-100 rounded-lg shadow-lg">
+        <div className="col-span-3 mx-4 p-6 transition-transform bg-emerald-100 rounded-lg shadow-lg">
             <div
                 onClick={handleChangeFavoriteButton}
-                className=" flex flex-col justify-center items-center p-10 m-4 bg-yellow-100 rounded-lg shadow-md text-3xl hover:cursor-pointer"
+                className=" flex flex-col justify-center items-center p-10 m-4 bg-yellow-100 transition-transform rounded-lg shadow-md text-3xl hover:cursor-pointer"
             >
                 <h1 className="text-2xl font-bold">Favorite:</h1>
                 {isFavorite ? (
@@ -43,7 +48,7 @@ export default function Other(props: Props) {
                     <FaRegStar className="text-yellow-400 hover:text-yellow-500" />
                 )}
             </div>
-            <div className=" flex flex-col justify-center items-center text-center p-10 m-4 bg-yellow-100 rounded-lg shadow-md text-2xl">
+            <div className=" flex flex-col justify-center items-center text-center p-10 m-4 transition-transform bg-yellow-100 rounded-lg shadow-md text-2xl">
                 <h1 className="font-bold">Energy Value: </h1>
                 {!onEdit ? (
                     <div className="w-full h-full">{energyValue}</div>
