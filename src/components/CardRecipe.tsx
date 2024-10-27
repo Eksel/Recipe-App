@@ -14,7 +14,7 @@ const CardRecipe = (props:Props) => {
     const {item} = props
     const [RecipeCard, setRecipeCard] = useState(item);
     const [isFavorite,setIsFavorite] = useState(item.isFavorite)
-    const {setModal,setIsModalOpen,isModalOpen,setRecipe,saveData} = useRecipeContext()
+    const {setModal,setIsModalOpen,isModalOpen,setRecipe} = useRecipeContext()
 
     
 

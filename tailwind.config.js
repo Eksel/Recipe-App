@@ -7,13 +7,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    
     extend: {
       gridTemplateRows:{
-        'page': '8vh 1fr 4vh',
+        'page': '8vh 1fr 6vh',
       },
       backgroundImage: {
         'front-image': "url('https://plus.unsplash.com/premium_photo-1664472619078-9db415ebef44?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c3BhZ2hldHRpfGVufDB8fDB8fHww')",
       }
+    },
+    fontFamily: {
+      customFont: ['"New Amsterdam"', "sans-serif"],
+      // Add more custom font families as needed
     },
   },
   plugins: [

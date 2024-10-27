@@ -1,4 +1,16 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+
+@layer base{
+    @font-face{
+    font-family: "Bungee Outline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    src: url('https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+  }
+
+}

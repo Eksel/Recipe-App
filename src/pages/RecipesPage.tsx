@@ -16,9 +16,9 @@ export default function RecipesPage() {
 
   return (
     <div className="flex flex-col items-center ">
-      <h1 className="text-5xl m- flex flex-row font-thin   text-center p-2 my-6 ">
+      <h1 className="text-3xl md:text-5xl  flex flex-row font-normal   text-center p-2 my-6 ">
         <IoFastFoodOutline/>
-        <p>Click to see Recipe</p> 
+        <p className="mx-3">Click to see Recipe</p> 
         <MdEmojiFoodBeverage/>  
       </h1>
       <CardConteiner localRecipes={localRecipes}/>

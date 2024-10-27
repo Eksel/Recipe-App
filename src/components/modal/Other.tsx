@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { FaCheck, FaRegStar, FaRegTrashAlt, FaStar } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 import TextareaAutosize from 'react-textarea-autosize';
 
 interface Props {
@@ -36,7 +35,7 @@ export default function Other(props: Props) {
     }
 
     return (
-        <div className="col-span-3 mx-4 p-6 transition-transform bg-emerald-100 rounded-lg shadow-lg">
+        <div className="col-span-3 m-4 p-6 transition-transform bg-emerald-100 rounded-lg shadow-lg">
             <div
                 onClick={handleChangeFavoriteButton}
                 className=" flex flex-col justify-center items-center p-10 m-4 bg-yellow-100 transition-transform rounded-lg shadow-md text-3xl hover:cursor-pointer"

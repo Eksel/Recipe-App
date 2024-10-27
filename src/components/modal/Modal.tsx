@@ -12,6 +12,7 @@ import { MdDeleteForever } from "react-icons/md";
 import Title from "./Title";
 import { MdCreate } from "react-icons/md";
 import Alert from "./Alert";
+import { MdOutlineAdd } from "react-icons/md";
 
 const initialImage =
     "https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=";
@@ -22,10 +23,9 @@ interface Props {
 }
 
 const Modal = (props: Props) => {
-    const { localRecipes, setLocalRecipes } = props;
+    const { setLocalRecipes } = props;
 
     const {
-        recipes,
         modal,
         setIsModalOpen,
         clearModal,
@@ -190,42 +190,42 @@ const Modal = (props: Props) => {
 
     return (
         <>
-            <div className="modal z-50 flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 p-4 bg-zinc-200 rounded-3xl shadow-xl transition-transform overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200">
+            <div className="modal z-50 flex flex-col items-start top-0 m-12 fixed w-5/6 h-5/6 md:p-4 bg-zinc-200 rounded-3xl shadow-xl transition-transform overflow-y-auto max-h-full scrollbar-webkit border-[20px] border-zinc-200">
                 <div className="w-full flex justify-end">
-                    <div className="absolute flex flex-row">
+                    <div className="absolute flex flex-row  text-xl">
                         {modal ? (
                             <>
                                 <div
                                     onClick={handleSaveClick}
-                                    className="hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600"
+                                    className="hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center  font-bold rounded-md md:mx-2 mx-1 px-4 py-2 text-white  bg-green-600"
                                 >
-                                    <FaRegSave /> <div>Save</div>
+                                    <FaRegSave /> <div className="hidden sm:block">Save</div>
                                 </div>
                                 <div
                                     onClick={handleRecipeDelete}
-                                    className="hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-red-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-red-600"
+                                    className="hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-red-800 flex gap-2 justify-center items-center font-bold rounded-md md:mx-2 mx-1 px-4 py-2 text-white  bg-red-600"
                                 >
-                                    <MdDeleteForever /> <div>Delete</div>
+                                    <MdDeleteForever /> <div className="hidden sm:block">Delete</div>
                                 </div>
                             </>
                         ) : (
                             <div
                                 onClick={handleSaveClick}
-                                className="hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center text-xl font-bold rounded-md mx-2 px-4 py-2 text-white  bg-green-600"
+                                className="hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-green-800 flex gap-2 justify-center items-center  font-bold rounded-md md:mx-2 mx-1 px-4 py-2 text-white  bg-green-600"
                             >
-                                <MdCreate /> <div>Create</div>
+                                <MdCreate /> <div className="hidden sm:block">Create</div>
                             </div>
                         )}
 
                         <div
                             onClick={handleCloseModal}
-                            className=" hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-gray-800 flex justify-center items-center text-xl font-bold rounded-md  mx-2 px-4 py-2 text-white  bg-black"
+                            className=" hover:text-slate-300 transition-all hover:cursor-pointer hover:bg-gray-800 flex justify-center items-center  font-bold rounded-md  md:mx-2 mx-1 px-4 py-2 text-white  bg-black"
                         >
                             X
                         </div>
                     </div>
                 </div>
-                <section className=" p-4 w-full ">
+                <section className=" md:px-4 w-full ">
                     <Title
                         title={title}
                         setTitle={setTitle}
@@ -233,7 +233,7 @@ const Modal = (props: Props) => {
                         deleteEditor={deleteEditor}
                     />
                 </section>
-                <section className="grid grid-cols-3 grid-rows-1 p-4 w-full">
+                <section className="lg:grid lg:grid-cols-3 lg:grid-rows-1 flex flex-col md:px-4 w-full">
                     <ImageRecipe
                         image={image}
                         setImage={setImage}
@@ -248,9 +248,9 @@ const Modal = (props: Props) => {
                     />
                 </section>
 
-                <section className="grid grid-cols-12 grid-rows-1 p-4 w-full ">
-                    <div className="col-span-4 mx-4 p-12 bg-emerald-100 rounded-lg shadow-lg ">
-                        <h2 className="mx-3 mb-3  text-center text-2xl font-bold">
+                <section className="xl:grid xl:grid-cols-12 xl:grid-rows-1 flex flex-col md:px-4 w-full ">
+                    <div className="col-span-4 m-4 p-2 md:p-4 md:px-12 bg-emerald-100 rounded-lg shadow-lg ">
+                        <h2 className="md:m-6 m-3 text-center text-2xl font-bold">
                             Ingredients:
                         </h2>
                         <div className="flex flex-col flex-wrap justify-center items-strech">
@@ -279,11 +279,11 @@ const Modal = (props: Props) => {
                             onClick={addIngredient}
                             className="flex  justify-center items-center p-2 m-1 rounded-md  bg-green-500 shadow-md hover:bg-green-600 transition-colors hover:cursor-pointer"
                         >
-                            + Add ingredient
+                            <MdOutlineAdd/> Add ingredient
                         </div>
                     </div>
-                    <div className="col-span-5 mx-4 p-12 bg-emerald-100 rounded-lg shadow-lg">
-                        <h2 className="mx-3 mb-3 text-center text-2xl font-bold">
+                    <div className="col-span-5 m-4 p-2 md:p-4 md:px-12 bg-emerald-100 rounded-lg shadow-lg">
+                        <h2 className="md:m-6 m-3 text-center text-2xl font-bold">
                             Steps:
                         </h2>
                         <div className="flex flex-col flex-wrap justify-center items-strech">
@@ -312,7 +312,7 @@ const Modal = (props: Props) => {
                             onClick={addStep}
                             className="flex  justify-center items-center p-2 m-1 rounded-md  bg-green-500 shadow-md hover:bg-green-600 transition-colors hover:cursor-pointer"
                         >
-                            + Add step
+                             <MdOutlineAdd/> Add step
                         </div>
                     </div>
                     <Other

@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { CiEdit } from "react-icons/ci";
 import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
-import { IoClose } from 'react-icons/io5';
+
 
 interface Props {
     image: string;
@@ -29,7 +29,7 @@ export default function ImageRecipe(props: Props) {
         setOnEdit(prev => !prev)
 
       }, [])
-      const {acceptedFiles ,getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+      const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     function handleEditClick(){
         setOnEdit(!onEdit)
@@ -41,16 +41,16 @@ export default function ImageRecipe(props: Props) {
     }
 
   return (
-    <div className='grid grid-cols-1 grid-rows-5 justify-between h-full mx-4   items-center bg-emerald-100 rounded-lg shadow-lg'>
+    <div className='flex flex-col  m-4   items-center bg-emerald-100 rounded-lg shadow-lg '>
         
-         <div className='row-span-1'></div>
+         
         
         {!onEdit ? 
-            <div className='row-span-3 flex justify-center'>
-                <img src={image} alt=""  className=' aspect-square object-cover w-1/2 m-1 shadow-2xl rounded-lg'/>
+            <div className=' flex justify-center items-center h-5/6 py-10'>
+                <img src={image} alt=""  className=' aspect-square object-cover w-1/2 shadow-2xl rounded-lg'/>
             </div>
             :
-            <div {...getRootProps()} className=' row-span-3 flex justify-center'>
+            <div {...getRootProps()} className=' flex justify-center items-center h-5/6 py-10'>
             <input {...getInputProps()} />
                 {
                 isDragActive ?
@@ -62,7 +62,7 @@ export default function ImageRecipe(props: Props) {
         } 
         
         
-        <div className='row-span-1 flex flex-row justify-end w-full text-xl px-10 text-white'>
+        <div className=' flex h-1/6 flex-row items-center justify-end w-full text-xl md:py-3 md:p-5 p-1 text-white'>
             <span onClick={handleEditClick} className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
                 {!onEdit ? <CiEdit /> : <FaCheck/>}
             </span>

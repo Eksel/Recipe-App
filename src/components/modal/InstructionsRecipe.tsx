@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 
 interface Props {
     instructions: string;
@@ -29,12 +28,12 @@ export default function InstructionsRecipe(props: Props) {
     }
 
   return (
-    <div className='col-span-2 h-full flex flex-col justify-between   mx-4 px-10 py-4 bg-emerald-100 rounded-lg shadow-lg'>
-        <div className="grid grid-rows-4">
-            <h2 className='flex row-span-1 justify-center m-4 p-2 rounded-md  font-bold text-3xl'>
+    <div className='col-span-2 flex flex-col justify-between   m-4  bg-emerald-100 rounded-lg shadow-lg'>
+        <div className="flex flex-col px-10 py-4">
+            <h2 className='flex  justify-center m-4 p-2 rounded-md  font-bold text-3xl'>
                 Recipe:
             </h2>
-            <div className="row-span-3 py-3 text-start">
+            <div className=" py-3 text-start">
             
                 {!onEdit ?
                     <div className='  text-lg'>
@@ -52,7 +51,7 @@ export default function InstructionsRecipe(props: Props) {
         
         
         
-        <div className=' flex justify-end text-xl text-white'>
+        <div className=' flex h-1/6 flex-row items-center justify-end w-full text-xl md:py-3 md:p-5 p-1 text-white'>
             <span onClick={handleEditClick} className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
                 {!onEdit ? <CiEdit /> : <FaCheck/>}
                 

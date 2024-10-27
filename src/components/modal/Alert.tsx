@@ -17,7 +17,7 @@ export default function Alert(props:Props) {
         role="dialog"
         aria-modal="true"
       >
-        {/* Modal Content */}
+        
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
           <h2 id="modal-title" className="text-lg font-semibold mb-4">
             Do you want to save the file?

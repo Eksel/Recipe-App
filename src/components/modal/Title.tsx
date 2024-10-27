@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CiEdit } from 'react-icons/ci';
 import { FaCheck, FaRegTrashAlt } from 'react-icons/fa';
-import { IoClose } from 'react-icons/io5';
 
 interface Props {
     title: string;
@@ -28,9 +27,9 @@ export default function Title(props: Props) {
         
     }
   return (
-    <div className='grid grid-cols-1 grid-rows-3 mx-4 p-3 bg-emerald-100 rounded-lg shadow-lg'>
-        <div className='row-span-1'></div>
-        <h1 className='row-span-1 flex justify-center text-3xl font-bold'>
+    <div className='flex flex-col m-4 bg-emerald-100 rounded-lg shadow-lg'>
+        
+        <h1 className=' flex justify-center text-3xl font-bold text-center h-5/6 mt-10'>
                 {!onEdit ?
                     <div className=''>
                         {title}
@@ -43,7 +42,7 @@ export default function Title(props: Props) {
                     </div>
                 }
         </h1>
-        <div className='row-span-1 flex flex-row justify-end w-full text-xl text-white'>
+        <div className=' flex flex-row items-center justify-end w-full text-xl md:py-3 md:p-5 p-1 text-white h-1/6'>
             <span onClick={handleEditClick} className='bg-green-700 p-1 m-1 rounded-md hover:cursor-pointer'>
                 {!onEdit ? <CiEdit /> : <FaCheck/>}
             </span>

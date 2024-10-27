@@ -2,7 +2,6 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import {Reorder, useMotionValue} from "framer-motion"
 import { useState } from "react";
-import { IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -40,7 +39,7 @@ export default function IngredientsItem(props:Props) {
     <Reorder.Item  id={value} value={value} style={{y}}>
           
         
-        <div className='flex flex-row justify-between items-center p-2 m-1 my-3 rounded-md  bg-green-200 shadow-md '>
+        <div className='flex flex-row justify-between items-center p-2 m-1 my-3 rounded-md  bg-green-200 shadow-md'>
                 {!onEdit ?
                     <div className='w-full h-full'>
                         {value}
@@ -49,7 +48,7 @@ export default function IngredientsItem(props:Props) {
                     <div className='w-full h-full'>
                         <TextareaAutosize
                             value={value}
-                            className="w-full h-full"
+                            className="w-full h-full "
                             minRows={1}
                             onChange={handleInputChange}
                         ></TextareaAutosize>
