@@ -2,7 +2,6 @@ import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { Reorder, useMotionValue } from "framer-motion";
 import { useState } from "react";
-import { IoClose } from "react-icons/io5";
 import TextareaAutosize from 'react-textarea-autosize';
 
 interface Props {
